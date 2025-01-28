@@ -101,13 +101,13 @@ export default function Home() {
                 <TimeBar
                   key={index}
                   timezone={timezone}
-                  ranges={getTimeRanges(timezone)}
+                  ranges={getTimeRanges()}
                   label={`US Time (${timezone.split('/')[1].replace('_', ' ')})`}
                 />
               ))}
               <TimeBar
                 timezone={chinaTimezone}
-                ranges={getTimeRanges(chinaTimezone)}
+                ranges={getTimeRanges()}
                 label="China Time"
               />
             </div>

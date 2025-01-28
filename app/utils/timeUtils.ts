@@ -31,7 +31,7 @@ export const getActivityLevel = (hour: number): ActivityLevel => {
   };
 };
 
-export const getTimeRanges = (timezone: string): TimeRange[] => {
+export const getTimeRanges = (): TimeRange[] => {
   const ranges: TimeRange[] = [];
   for (let hour = 0; hour < 24; hour++) {
     ranges.push({
