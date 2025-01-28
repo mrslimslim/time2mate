@@ -1,101 +1,119 @@
-import Image from "next/image";
+'use client';
+
+import { useState, useEffect } from 'react';
+import { Button } from "@/components/ui/button"
+import { Lock, Unlock } from "lucide-react"
+import { useToast } from "@/hooks/use-toast"
+import timezoneData from './timezone.json';
+import StateInput from './components/StateInput';
+import TimeBar from './components/TimeBar';
+import ActivityConclusion from './components/ActivityConclusion';
+import { getTimeRanges, getCurrentActivityLevel, getActivityStatus } from './utils/timeUtils';
+import { utcToIANA } from './utils/timezoneMapping';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [selectedTimezones, setSelectedTimezones] = useState<string[]>([]);
+  const [isLocked, setIsLocked] = useState(false);
+  const { toast } = useToast();
+  const chinaTimezone = 'Asia/Shanghai';
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  useEffect(() => {
+    const savedState = localStorage.getItem('savedTimezones');
+    if (savedState) {
+      const parsed = JSON.parse(savedState);
+      setSelectedTimezones(parsed);
+      setIsLocked(true);
+    }
+  }, []);
+
+  const handleStateSelect = (utcTimezones: string[]) => {
+    const ianaTimezones = utcTimezones.map(utc => utcToIANA[utc]).filter(Boolean);
+    setSelectedTimezones(ianaTimezones);
+  };
+
+  const toggleLock = () => {
+    if (!isLocked) {
+      localStorage.setItem('savedTimezones', JSON.stringify(selectedTimezones));
+      toast({
+        description: "Your selection has been saved. It will be restored next time you visit.",
+      });
+    } else {
+      localStorage.removeItem('savedTimezones');
+      toast({
+        description: "Your saved selection has been cleared.",
+      });
+    }
+    setIsLocked(!isLocked);
+  };
+
+  const getConclusion = () => {
+    if (selectedTimezones.length === 0) return null;
+    const usActivity = getCurrentActivityLevel(selectedTimezones[0]);
+    const chinaActivity = getCurrentActivityLevel(chinaTimezone);
+    return getActivityStatus(usActivity, chinaActivity);
+  };
+
+  const conclusion = getConclusion();
+
+  return (
+    <main className="h-screen p-4 bg-gray-900 text-white flex items-center justify-center relative">
+      {selectedTimezones.length > 0 && (
+        <div className="absolute top-4 right-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleLock}
+            className="hover:bg-gray-800"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            {isLocked ? (
+              <Lock className="h-4 w-4 text-blue-400" />
+            ) : (
+              <Unlock className="h-4 w-4 text-gray-400" />
+            )}
+          </Button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      )}
+
+      <div className="w-full max-w-3xl">
+        <h1 className="text-3xl font-bold text-center mb-2 bg-gradient-to-r from-blue-500 to-purple-500 
+        text-transparent bg-clip-text">Time2Mate</h1>
+        <p className="text-center mb-6 text-gray-400 text-sm">
+          Find the perfect time to connect with friends in China
+        </p>
+
+        <div className="flex justify-center mb-8">
+          <StateInput
+            timezoneData={timezoneData}
+            onStateSelect={handleStateSelect}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        </div>
+
+        {selectedTimezones.length > 0 && (
+          <div className="space-y-4">
+            {conclusion && (
+              <ActivityConclusion
+                status={conclusion.status}
+                message={conclusion.message}
+              />
+            )}
+            <div className="space-y-3 bg-gray-800/30 p-4 rounded-xl">
+              {selectedTimezones.map((timezone, index) => (
+                <TimeBar
+                  key={index}
+                  timezone={timezone}
+                  ranges={getTimeRanges(timezone)}
+                  label={`US Time (${timezone.split('/')[1].replace('_', ' ')})`}
+                />
+              ))}
+              <TimeBar
+                timezone={chinaTimezone}
+                ranges={getTimeRanges(chinaTimezone)}
+                label="China Time"
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </main>
   );
 }

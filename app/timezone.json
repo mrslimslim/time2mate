@@ -1,0 +1,207 @@
+[
+    {
+      "state": "Alabama",
+      "timeZones": ["UTC-6"]
+    },
+    {
+      "state": "Alaska",
+      "timeZones": ["UTC-9", "UTC-10"]
+    },
+    {
+      "state": "Arizona",
+      "timeZones": ["UTC-7"]
+    },
+    {
+      "state": "Arkansas",
+      "timeZones": ["UTC-6"]
+    },
+    {
+      "state": "California",
+      "timeZones": ["UTC-8"]
+    },
+    {
+      "state": "Colorado",
+      "timeZones": ["UTC-7"]
+    },
+    {
+      "state": "Connecticut",
+      "timeZones": ["UTC-5"]
+    },
+    {
+      "state": "Delaware",
+      "timeZones": ["UTC-5"]
+    },
+    {
+      "state": "Florida",
+      "timeZones": ["UTC-5", "UTC-6"]
+    },
+    {
+      "state": "Georgia",
+      "timeZones": ["UTC-5"]
+    },
+    {
+      "state": "Hawaii",
+      "timeZones": ["UTC-10"]
+    },
+    {
+      "state": "Idaho",
+      "timeZones": ["UTC-7", "UTC-8"]
+    },
+    {
+      "state": "Illinois",
+      "timeZones": ["UTC-6"]
+    },
+    {
+      "state": "Indiana",
+      "timeZones": ["UTC-5", "UTC-6"]
+    },
+    {
+      "state": "Iowa",
+      "timeZones": ["UTC-6"]
+    },
+    {
+      "state": "Kansas",
+      "timeZones": ["UTC-6", "UTC-7"]
+    },
+    {
+      "state": "Kentucky",
+      "timeZones": ["UTC-5", "UTC-6"]
+    },
+    {
+      "state": "Louisiana",
+      "timeZones": ["UTC-6"]
+    },
+    {
+      "state": "Maine",
+      "timeZones": ["UTC-5"]
+    },
+    {
+      "state": "Maryland",
+      "timeZones": ["UTC-5"]
+    },
+    {
+      "state": "Massachusetts",
+      "timeZones": ["UTC-5"]
+    },
+    {
+      "state": "Michigan",
+      "timeZones": ["UTC-5", "UTC-6"]
+    },
+    {
+      "state": "Minnesota",
+      "timeZones": ["UTC-6"]
+    },
+    {
+      "state": "Mississippi",
+      "timeZones": ["UTC-6"]
+    },
+    {
+      "state": "Missouri",
+      "timeZones": ["UTC-6"]
+    },
+    {
+      "state": "Montana",
+      "timeZones": ["UTC-7"]
+    },
+    {
+      "state": "Nebraska",
+      "timeZones": ["UTC-6", "UTC-7"]
+    },
+    {
+      "state": "Nevada",
+      "timeZones": ["UTC-7", "UTC-8"]
+    },
+    {
+      "state": "New Hampshire",
+      "timeZones": ["UTC-5"]
+    },
+    {
+      "state": "New Jersey",
+      "timeZones": ["UTC-5"]
+    },
+    {
+      "state": "New Mexico",
+      "timeZones": ["UTC-7"]
+    },
+    {
+      "state": "New York",
+      "timeZones": ["UTC-5"]
+    },
+    {
+      "state": "North Carolina",
+      "timeZones": ["UTC-5"]
+    },
+    {
+      "state": "North Dakota",
+      "timeZones": ["UTC-6", "UTC-7"]
+    },
+    {
+      "state": "Ohio",
+      "timeZones": ["UTC-5"]
+    },
+    {
+      "state": "Oklahoma",
+      "timeZones": ["UTC-6", "UTC-7"]
+    },
+    {
+      "state": "Oregon",
+      "timeZones": ["UTC-7", "UTC-8"]
+    },
+    {
+      "state": "Pennsylvania",
+      "timeZones": ["UTC-5"]
+    },
+    {
+      "state": "Rhode Island",
+      "timeZones": ["UTC-5"]
+    },
+    {
+      "state": "South Carolina",
+      "timeZones": ["UTC-5"]
+    },
+    {
+      "state": "South Dakota",
+      "timeZones": ["UTC-6", "UTC-7"]
+    },
+    {
+      "state": "Tennessee",
+      "timeZones": ["UTC-5", "UTC-6"]
+    },
+    {
+      "state": "Texas",
+      "timeZones": ["UTC-6", "UTC-7"]
+    },
+    {
+      "state": "Utah",
+      "timeZones": ["UTC-7"]
+    },
+    {
+      "state": "Vermont",
+      "timeZones": ["UTC-5"]
+    },
+    {
+      "state": "Virginia",
+      "timeZones": ["UTC-5"]
+    },
+    {
+      "state": "Washington",
+      "timeZones": ["UTC-8"]
+    },
+    {
+      "state": "West Virginia",
+      "timeZones": ["UTC-5"]
+    },
+    {
+      "state": "Wisconsin",
+      "timeZones": ["UTC-6"]
+    },
+    {
+      "state": "Wyoming",
+      "timeZones": ["UTC-7"]
+    },
+    {
+      "state": "District of Columbia",
+      "timeZones": ["UTC-5"]
+    }
+  ]
+  
